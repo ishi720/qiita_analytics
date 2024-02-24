@@ -5,7 +5,9 @@ import json
 
 app = Flask(__name__)
 
-qiita_data_str = get_qiita_myitem()
+app.config.from_pyfile('config.cfg')
+
+qiita_data_str = get_qiita_myitem(app.config['QIITA_BEARER_TOKEN'])
 qiita_data = json.loads(qiita_data_str)
 
 @app.route('/')

@@ -1,9 +1,9 @@
 import requests
 import json
 
-def get_qiita_myitem():
+def get_qiita_myitem(bearer_token):
     url = "https://qiita.com/api/v2/items"
-    bearer_token = "{Your access token}"
+    bearer_token = bearer_token
     user = "{Your user name}"
 
     params = {

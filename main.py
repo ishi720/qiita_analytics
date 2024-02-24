@@ -10,8 +10,6 @@ qiita_data = json.loads(qiita_data_str)
 
 @app.route('/')
 def index():
-    # return render_template('index.html')
-    data = 'views.pyのinsert_something部分です。'
     return render_template('index.html', items=qiita_data)
 
 if __name__ == '__main__':

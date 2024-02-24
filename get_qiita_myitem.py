@@ -2,20 +2,23 @@ import requests
 import json
 
 def get_qiita_myitem(bearer_token):
-    url = "https://qiita.com/api/v2/items"
-    bearer_token = bearer_token
-    user = "{Your user name}"
 
+    url = "https://qiita.com/api/v2/items"
+    user = "{Your user name}"
     params = {
         "query": "user:"+ user,
         "per_page": 50,
         "page": 1
     }
-    headers = {
-        "Authorization": "Bearer {}".format(bearer_token)
-    }
+    if bearer_token == '':
+        r = requests.get(url, params=params)
+    else:
+        bearer_token = bearer_token
+        headers = {
+            "Authorization": "Bearer {}".format(bearer_token)
+        }
+        r = requests.get(url, headers=headers, params=params)
 
-    r = requests.get(url, headers=headers, params=params)
     items = r.json()
 
     result = []

@@ -1,24 +1,69 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <title>Qiita記事一覧</title>
-        <meta charset="utf-8"/>
-    </head>
-    <body>
-        <h1>Qiita記事一覧</h1>
-        <form method="post" action="/">
-            <input type="text" id="search" name="search" required>
-            <button type="submit">検索</button>
-        </form>
-        {% for item in items %}
-        <ul>
-            <li>{{ item.title }}</li>
-            <li>{{ item.url }}</li>
-            <li>{{ item.likes_count }}</li>
-            <li>{{ item.stocks_count }}</li>
-            <li>{{ item.page_views_count }}</li>
-            <li>{{ item.updated_at }}</li>
-        </ul>
-        {% endfor %}
-    </body>
+<head>
+    <title>Qiita記事一覧</title>
+    <meta charset="utf-8"/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Qiita記事一覧</h1>
+    <form method="post" action="/">
+        <input type="text" id="search" name="search" required>
+        <button type="submit">検索</button>
+    </form>
+    
+    {% if items %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>URL</th>
+                    <th>Likes Count</th>
+                    <th>Stocks Count</th>
+                    <th>Page Views Count</th>
+                    <th>Updated At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.url }}</td>
+                        <td>{{ item.likes_count }}</td>
+                        <td>{{ item.stocks_count }}</td>
+                        <td>{{ item.page_views_count }}</td>
+                        <td>{{ item.updated_at }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No items found.</p>
+    {% endif %}
+</body>
 </html>

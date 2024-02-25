@@ -1,4 +1,3 @@
-#coding:utf-8
 from flask import Flask, request, render_template
 from get_qiita_myitem import get_qiita_myitem
 import json
@@ -9,6 +8,7 @@ app.config.from_pyfile('config.cfg')
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+
     user_name = ''
 
     if request.method == 'POST':

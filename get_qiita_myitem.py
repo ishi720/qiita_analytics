@@ -2,6 +2,14 @@ import requests
 import json
 
 def get_qiita_myitem(bearer_token: str, user_name: str) -> str:
+    """
+    Qiitaから記事の一覧を取得する
+    Args:
+        bearer_token (str): Qiitaアクセストークン
+        user_name (str): Qiitaのアカウント名
+    Returns:
+        str: 指定されたQiitaの記事一覧
+    """
 
     url = "https://qiita.com/api/v2/items"
     headers = {}

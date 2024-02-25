@@ -1,3 +1,6 @@
 {
-    "editor.renderWhitespace": "all" //空白の表示
+    "editor.renderWhitespace": "all",
+    "editor.tabSize": 4,
+
+    "files.trimTrailingWhitespace": true
 }

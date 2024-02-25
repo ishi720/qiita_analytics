@@ -13,7 +13,7 @@ def get_qiita_myitem(bearer_token, user_name):
         r = requests.get(url, params=params)
     else:
         headers = {
-            "Authorization": "Bearer {}".format(bearer_token)
+            "Authorization": f"Bearer {bearer_token}"
         }
         r = requests.get(url, headers=headers, params=params)
 

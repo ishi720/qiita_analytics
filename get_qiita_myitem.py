@@ -1,12 +1,12 @@
 import requests
 import json
 
-def get_qiita_myitem(bearer_token, user_name):
+def get_qiita_myitem(bearer_token: str, user_name: str) -> str:
 
     url = "https://qiita.com/api/v2/items"
     headers = {}
     params = {
-        "query": "user:"+ user_name,
+        "query": f"user:{user_name}",
         "per_page": 50,
         "page": 1
     }

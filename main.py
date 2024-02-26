@@ -6,13 +6,13 @@ app = Flask(__name__)
 
 app.config.from_pyfile('config.cfg')
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def index():
 
     user_name = ''
 
-    if request.method == 'POST':
-        user_name = request.form.get('search', '')
+
+    user_name = request.args.get('search', '')
 
     qiita_data_str = get_qiita_myitem(app.config['QIITA_BEARER_TOKEN'], user_name)
     qiita_data = json.loads(qiita_data_str)

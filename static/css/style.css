@@ -22,3 +22,11 @@ th, td {
 th {
     background-color: #f2f2f2;
 }
+
+.no_item {
+    text-align: center;
+    background-color: #eee;
+    padding: 20px 10px;
+    color: #555;
+    border-radius: 2px;
+}

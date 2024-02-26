@@ -13,34 +13,37 @@
         <input type="text" id="search" name="search" value="{{ user_name }}" required>
         <button type="submit">検索</button>
     </form>
-    
+
+    <table>
     {% if items %}
-        <table>
-            <thead>
+        <thead>
+            <tr>
+                <th>記事名</th>
+                <th>いいね数</th>
+                <th>ストック数</th>
+                <th>ページビュー数</th>
+                <th>更新日時</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
                 <tr>
-                    <th>記事名</th>
-                    <th>いいね数</th>
-                    <th>ストック数</th>
-                    <th>ページビュー数</th>
-                    <th>更新日時</th>
+                    <td>
+                        <a href="{{ item.url }}">{{ item.title }}</a>
+                    </td>
+                    <td>{{ item.likes_count }}</td>
+                    <td>{{ item.stocks_count }}</td>
+                    <td>{{ item.page_views_count }}</td>
+                    <td>{{ item.updated_at }}</td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for item in items %}
-                    <tr>
-                        <td>
-                            <a href="{{ item.url }}">{{ item.title }}</a>
-                        </td>
-                        <td>{{ item.likes_count }}</td>
-                        <td>{{ item.stocks_count }}</td>
-                        <td>{{ item.page_views_count }}</td>
-                        <td>{{ item.updated_at }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+            {% endfor %}
+        </tbody>
     {% else %}
-        <p>No items found.</p>
+        <p class="no_item">
+            指定した条件に当てはまる記事はありませんでした。<br>
+            検索条件を変えて検索してください。
+        </p>
     {% endif %}
+    </table>
 </body>
 </html>

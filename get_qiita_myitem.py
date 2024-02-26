@@ -10,6 +10,10 @@ def get_qiita_myitem(bearer_token: str, user_name: str) -> str:
     Returns:
         str: 指定されたQiitaの記事一覧
     """
+    result = []
+
+    if user_name == "":
+        return json.dumps(result, indent=2, ensure_ascii=False)
 
     url = "https://qiita.com/api/v2/items"
     headers = {}
@@ -25,8 +29,6 @@ def get_qiita_myitem(bearer_token: str, user_name: str) -> str:
     r = requests.get(url, headers=headers, params=params)
 
     items = r.json()
-
-    result = []
 
     for item in items:
         if item['private'] == False:

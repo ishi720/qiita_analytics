@@ -29,14 +29,15 @@ def get_qiita_myitem(bearer_token: str, user_name: str) -> str:
     result = []
 
     for item in items:
-        page_data = {
-            'title': item['title'],
-            'url': item['url'],
-            'likes_count': item['likes_count'],
-            'stocks_count': item['stocks_count'],
-            'page_views_count': item['page_views_count'],
-            'updated_at': item['updated_at']
-        }
-        result.append(page_data)
+        if item['private'] == False:
+            page_data = {
+                'title': item['title'],
+                'url': item['url'],
+                'likes_count': item['likes_count'],
+                'stocks_count': item['stocks_count'],
+                'page_views_count': item['page_views_count'],
+                'updated_at': item['updated_at']
+            }
+            result.append(page_data)
 
     return json.dumps(result, indent=2, ensure_ascii=False)

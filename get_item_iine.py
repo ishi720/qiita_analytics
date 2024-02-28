@@ -1,12 +1,13 @@
 import requests
 import json
+import pandas as pd
 
 def get_item_iine(bearer_token: str, item_id: str) -> str:
     """
     Qiitaから記事の一覧を取得する
     Args:
         bearer_token (str): Qiitaアクセストークン
-        user_name (str): Qiitaのアカウント名
+        item_id (str): 記事のID
     Returns:
         str: 指定されたQiitaの記事一覧
     """
@@ -26,11 +27,14 @@ def get_item_iine(bearer_token: str, item_id: str) -> str:
     users = r.json()
 
     for user in users:
-        data = {
-            'created_at': user['created_at'],
-        }
-        result.append(data)
+        result.append(user['created_at'])
 
-    # TODO created_atを日付単位で集計する
+    # 日付単位で集計
+    dates = pd.to_datetime(result)
+    dates = pd.Series(index=dates)
+    dates = dates.to_period("D").index
+    result_dict = dates.value_counts().sort_index().to_dict()
+    result_dict = {str(key): value for key, value in result_dict.items()}
 
-    return json.dumps(result, indent=2, ensure_ascii=False)
+    return json.dumps(result_dict)
+

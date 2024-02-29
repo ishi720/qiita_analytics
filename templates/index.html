@@ -31,7 +31,9 @@
                     <td>
                         <a href="{{ item.url }}">{{ item.title }}</a>
                     </td>
-                    <td>{{ item.likes_count }}</td>
+                    <td>
+                        <a href="./analytics?item_id={{ item.id }}">{{ item.likes_count }}</a>
+                    </td>
                     <td>{{ item.stocks_count }}</td>
                     <td>{{ item.page_views_count }}</td>
                     <td>{{ item.updated_at }}</td>

@@ -34,6 +34,7 @@ def get_qiita_myitem(bearer_token: str, user_name: str) -> str:
         if item['private'] == False:
             page_data = {
                 'title': item['title'],
+                'id': item['id'],
                 'url': item['url'],
                 'likes_count': item['likes_count'],
                 'stocks_count': item['stocks_count'],

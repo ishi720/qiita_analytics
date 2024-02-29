@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 from get_qiita_myitem import get_qiita_myitem
+from get_item_iine import get_item_iine
 import json
 
 app = Flask(__name__)
@@ -20,7 +21,11 @@ def index():
 
 @app.route('/analytics', methods=['GET'])
 def analytics():
-    return render_template('analytics.html')
+
+    item_id = request.args.get('item_id', '')
+    iine_date = get_item_iine(app.config['QIITA_BEARER_TOKEN'], item_id)
+    qiita_data = json.loads(iine_date)
+    return render_template('analytics.html', iine_date=qiita_data)
 
 
 if __name__ == '__main__':

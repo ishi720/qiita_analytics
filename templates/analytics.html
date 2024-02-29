@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <link rel="stylesheet" href="/static/css/style.css">
+
 </head>
 <body>
     <h1>アナリティクス</h1>
+    {% for k, v in iine_date.items() %}
+        <div>{{k}} {{v}}</div>
+    {% endfor %}
 </body>
 </html>

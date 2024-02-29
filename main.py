@@ -5,7 +5,7 @@ import json
 
 app = Flask(__name__)
 
-app.config.from_pyfile('config.cfg')
+# app.config.from_pyfile('config.cfg')
 
 @app.route('/', methods=['GET'])
 def index():
@@ -14,7 +14,7 @@ def index():
 
     user_name = request.args.get('search', '')
 
-    qiita_data_str = get_qiita_myitem(app.config['QIITA_BEARER_TOKEN'], user_name)
+    qiita_data_str = get_qiita_myitem(user_name)
     qiita_data = json.loads(qiita_data_str)
 
     return render_template('index.html', items=qiita_data, user_name=user_name)
@@ -23,7 +23,7 @@ def index():
 def analytics():
 
     item_id = request.args.get('item_id', '')
-    iine_date = get_item_iine(app.config['QIITA_BEARER_TOKEN'], item_id)
+    iine_date = get_item_iine(item_id)
     qiita_data = json.loads(iine_date)
     return render_template('analytics.html', iine_date=qiita_data)
 

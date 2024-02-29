@@ -1,8 +1,9 @@
 import requests
 import json
 import pandas as pd
+import configparser
 
-def get_item_iine(bearer_token: str, item_id: str) -> str:
+def get_item_iine(item_id: str) -> str:
     """
     Qiitaから記事の一覧を取得する
     Args:
@@ -11,6 +12,9 @@ def get_item_iine(bearer_token: str, item_id: str) -> str:
     Returns:
         str: 指定されたQiitaの記事一覧
     """
+    config = configparser.ConfigParser()
+    config.read("config.cfg", 'UTF-8')
+    bearer_token = config['QIITA']['QIITA_BEARER_TOKEN']
     result = []
 
     url = f"https://qiita.com/api/v2/items/{item_id}/likes"

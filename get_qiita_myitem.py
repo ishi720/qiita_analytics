@@ -1,7 +1,8 @@
 import requests
 import json
+import configparser
 
-def get_qiita_myitem(bearer_token: str, user_name: str) -> str:
+def get_qiita_myitem(user_name: str) -> str:
     """
     Qiitaから記事の一覧を取得する
     Args:
@@ -10,6 +11,9 @@ def get_qiita_myitem(bearer_token: str, user_name: str) -> str:
     Returns:
         str: 指定されたQiitaの記事一覧
     """
+    config = configparser.ConfigParser()
+    config.read("config.cfg", 'UTF-8')
+    bearer_token = config['QIITA']['QIITA_BEARER_TOKEN']
     result = []
 
     if user_name == "":

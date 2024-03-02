@@ -14,7 +14,7 @@ def get_item_iine(item_id: str) -> str:
     """
     config = configparser.ConfigParser()
     config.read("config.cfg", 'UTF-8')
-    bearer_token = config['QIITA']['QIITA_BEARER_TOKEN']
+    bearer_token = config['QIITA']['BEARER_TOKEN']
     result = []
 
     url = f"https://qiita.com/api/v2/items/{item_id}/likes"

@@ -13,7 +13,7 @@ def get_qiita_myitem(user_name: str) -> str:
     """
     config = configparser.ConfigParser()
     config.read("config.cfg", 'UTF-8')
-    bearer_token = config['QIITA']['QIITA_BEARER_TOKEN']
+    bearer_token = config['QIITA']['BEARER_TOKEN']
     result = []
 
     if user_name == "":

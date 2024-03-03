@@ -15,8 +15,8 @@ pip install -r requirements.txt
 ```
 
 - APIキーの設定
-
-Qiitaアクセストークンを取得し、config.cfgの`QIITA_BEARER_TOKEN`にセット
+  - config.cfg.sampleをコピーしconfig.cfgを作成
+  - Qiitaアクセストークンを取得し、config.cfgの`BEARER_TOKEN`にセット
 
 - アプリの起動
 

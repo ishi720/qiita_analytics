@@ -10,8 +10,33 @@
 </head>
 <body>
     <h1>アナリティクス</h1>
-    {% for k, v in iine_date.items() %}
-        <div>{{k}} {{v}}</div>
-    {% endfor %}
+
 </body>
 </html>
+<script>
+
+function get_like_date() {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const item_id = urlParams.get('item_id');
+    const url = './get_item_iine_api?item_id='+ item_id;
+
+    // リクエストを送信
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+
+        for (const date in data) {
+            if (data.hasOwnProperty(date)) {
+                console.log(`${date}: ${data[date]}`);
+            }
+        }
+    })
+    .catch(error => {
+        // エラーハンドリング
+        console.error('Error fetching data:', error);
+    });
+}
+
+</script>

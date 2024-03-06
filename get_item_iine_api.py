@@ -3,7 +3,7 @@ import json
 import pandas as pd
 import configparser
 
-def get_item_iine(item_id: str) -> str:
+def get_item_iine_api(item_id: str) -> str:
     """
     Qiitaから記事の一覧を取得する
     Args:

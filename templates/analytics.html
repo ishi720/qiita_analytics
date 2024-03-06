@@ -19,7 +19,7 @@ function get_like_date() {
 
     const urlParams = new URLSearchParams(window.location.search);
     const item_id = urlParams.get('item_id');
-    const url = './get_item_iine_api?item_id='+ item_id;
+    const url = './api/get_item_like?item_id='+ item_id;
 
     // リクエストを送信
     fetch(url)

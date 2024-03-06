@@ -1,14 +1,12 @@
 from flask import Flask, request, render_template
 from get_qiita_myitem import get_qiita_myitem
-from get_item_iine_api import get_item_iine_api
+from get_item_like import get_item_like
 import json
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def index():
-
-    user_name = ''
 
     user_name = request.args.get('search', '')
 
@@ -22,9 +20,9 @@ def analytics():
     return render_template('analytics.html')
 
 
-@app.route('/get_item_iine_api', methods=['GET'])
-def get_item_iine ():
-    return get_item_iine_api(request.args.get('item_id'))
+@app.route('/api/get_item_like', methods=['GET'])
+def get_item_like ():
+    return get_item_like(request.args.get('item_id'))
 
 if __name__ == '__main__':
     app.debug = True

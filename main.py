@@ -21,7 +21,7 @@ def analytics():
 
 
 @app.route('/api/get_item_like', methods=['GET'])
-def get_item_like ():
+def api_get_item_like ():
     return get_item_like(request.args.get('item_id'))
 
 if __name__ == '__main__':

@@ -1,42 +1,72 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="utf-8"/>
-    <title>アナリティクス</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+{% extends "layout.html" %}
 
-    <link rel="stylesheet" href="/static/css/style.css">
+{% block content %}
+<h1>アナリティクス</h1>
 
-</head>
-<body>
-    <h1>アナリティクス</h1>
+<button onclick="window.history.back();">戻る</button>
 
-</body>
-</html>
-<script>
+<canvas id="myLineChart"></canvas>
 
-function get_like_date() {
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const item_id = urlParams.get('item_id');
-    const url = './api/get_item_like?item_id='+ item_id;
-
-    // リクエストを送信
-    fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-
-        for (const date in data) {
-            if (data.hasOwnProperty(date)) {
-                console.log(`${date}: ${data[date]}`);
-            }
-        }
-    })
-    .catch(error => {
-        // エラーハンドリング
-        console.error('Error fetching data:', error);
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        get_like_date();
     });
-}
+
+    function get_like_date() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const item_id = urlParams.get('item_id');
+        const url = './api/get_item_like?item_id='+ item_id;
+
+        // リクエストを送信
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            let keys = Object.keys(data);
+            let values = Object.values(data);
+            render_chart(keys, values);
+        })
+        .catch(error => {
+            // エラーハンドリング
+            console.error('Error fetching data:', error);
+        });
+    }
+
+    function render_chart(keys, values){
+        // データ
+        const data = {
+            labels: keys,
+            datasets: [{
+                label: 'いいね数',
+                data: values,
+                borderColor: "green",
+                backgroundColor: "rgba(0,255,0,0.2)",
+                fill: true
+            }]
+        };
+
+        // グラフのオプション
+        const options = {
+            scales: {
+                yAxes: [
+                    {
+                        ticks: {
+                            suggestedMin: 0,
+                        }
+                    }
+                ]
+            }
+        };
+
+        // グラフを描画
+        const ctx = document.getElementById('myLineChart');
+        const myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: options
+        });
+    }
+
 
 </script>
+{% endblock %}
+

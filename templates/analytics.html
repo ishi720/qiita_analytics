@@ -37,6 +37,7 @@
             labels: keys,
             datasets: [{
                 label: 'いいね数',
+                tension: 0.2,
                 data: values,
                 borderColor: "green",
                 backgroundColor: "rgba(0,255,0,0.2)",
@@ -47,13 +48,9 @@
         // グラフのオプション
         const options = {
             scales: {
-                yAxes: [
-                    {
-                        ticks: {
-                            suggestedMin: 0,
-                        }
-                    }
-                ]
+                y: {
+                    min: 0
+                }
             }
         };
 

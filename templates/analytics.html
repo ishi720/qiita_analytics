@@ -7,6 +7,7 @@
 
 <canvas id="myLineChart"></canvas>
 
+
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
         get_like_date();
@@ -34,7 +35,7 @@
     function render_chart(keys, values){
         // データ
         const data = {
-            labels: keys,
+            labels: keys.map((value) => moment(value).toDate()),
             datasets: [{
                 label: 'いいね数',
                 tension: 0.2,
@@ -47,7 +48,17 @@
 
         // グラフのオプション
         const options = {
+            responsive: true,
             scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'day',
+                        displayFormats: {
+                            'day': 'YYYY-MM-DD'
+                        }
+                    }
+                },
                 y: {
                     min: 0
                 }

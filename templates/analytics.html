@@ -32,10 +32,28 @@
         });
     }
 
+    function createDateList(start, end) {
+        var startDate = new Date(start);
+        var endDate = new Date(end);
+        var dateList = [];
+
+        // 開始日から終了日までの日付を生成し、リストに追加
+        var currentDate = new Date(startDate);
+        while (currentDate <= endDate) {
+            var formattedDate = currentDate.toISOString().slice(0, 10);
+            dateList.push(formattedDate);
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+
+        return dateList;
+    }
+
+
     function render_chart(keys, values){
         // データ
         const data = {
-            labels: keys.map((value) => moment(value).toDate()),
+            // labels: keys.map((value) => moment(value).toDate()),
+            labels: keys,
             datasets: [{
                 label: 'いいね数',
                 tension: 0.2,
@@ -45,6 +63,20 @@
                 fill: true
             }]
         };
+
+        // データが欠落している日付に対応するデータを0に設定
+        var newData = [];
+        var allDates = createDateList(keys[0], keys[keys.length - 1]) // 期間内の全日付
+        var existingDates = data.labels;
+        for (var i = 0; i < allDates.length; i++) {
+            if (existingDates.includes(allDates[i])) {
+                newData.push(data.datasets[0].data[existingDates.indexOf(allDates[i])]);
+            } else {
+                newData.push(0);
+            }
+        }
+        data.labels = allDates
+        data.datasets[0].data = newData;
 
         // グラフのオプション
         const options = {

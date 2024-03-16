@@ -13,11 +13,11 @@ def index():
     qiita_data_str = get_qiita_myitem(user_name)
     qiita_data = json.loads(qiita_data_str)
 
-    return render_template('index.html', items=qiita_data, user_name=user_name)
+    return render_template('index.html', page_title='記事一覧', items=qiita_data, user_name=user_name)
 
 @app.route('/analytics', methods=['GET'])
 def analytics():
-    return render_template('analytics.html')
+    return render_template('analytics.html', page_title='アナリティクス',)
 
 
 @app.route('/api/get_item_like', methods=['GET'])

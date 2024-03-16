@@ -5,7 +5,7 @@ import configparser
 
 def get_item_like(item_id: str) -> str:
     """
-    Qiita記事のいいねされた時間を取得する
+    Qiita記事がいいねされた日付を集計する
     Args:
         bearer_token (str): Qiitaアクセストークン
         item_id (str): 記事のID

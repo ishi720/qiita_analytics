@@ -65,6 +65,9 @@ function render_chart(keys, values){
         }
     }
     data.labels = allDates
+
+    newData = transformArray(newData);//右肩上がりの加算したデータに変換
+
     data.datasets[0].data = newData;
 
     // グラフのオプション
@@ -95,3 +98,17 @@ function render_chart(keys, values){
     });
 }
 
+
+function transformArray(arr) {
+    if (arr.length === 0) {
+        return []; // 空配列の場合は空配列を返す
+    }
+
+    let transformedArray = [arr[0]]; // 最初の要素はそのまま残す
+
+    for (let i = 1; i < arr.length; i++) {
+        transformedArray.push(transformedArray[i - 1] + arr[i]); // 各要素を変換して新しい配列に追加する
+    }
+
+    return transformedArray;
+}

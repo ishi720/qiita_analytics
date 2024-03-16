@@ -5,7 +5,7 @@ import configparser
 
 def get_item_like(item_id: str) -> str:
     """
-    Qiitaから記事の一覧を取得する
+    Qiita記事のいいねされた時間を取得する
     Args:
         bearer_token (str): Qiitaアクセストークン
         item_id (str): 記事のID
@@ -16,22 +16,32 @@ def get_item_like(item_id: str) -> str:
     config.read("config.cfg", 'UTF-8')
     bearer_token = config['QIITA']['BEARER_TOKEN']
     result = []
+    per_page = 100
 
-    url = f"https://qiita.com/api/v2/items/{item_id}/likes"
+    # ページ件数を取得
+    url = f"https://qiita.com/api/v2/items/{item_id}/"
     headers = {}
-    params = {
-        "per_page": 100,
-    }
-
+    params = {}
     if bearer_token:
         headers["Authorization"] = f"Bearer {bearer_token}"
-
     r = requests.get(url, headers=headers, params=params)
+    item_data = r.json()
+    page_count = (int(item_data['likes_count']) + per_page - 1) // per_page
 
-    users = r.json()
-
-    for user in users:
-        result.append(user['created_at'])
+    # いいね数をカウント
+    for page in range(1, page_count + 1):
+        url = f"https://qiita.com/api/v2/items/{item_id}/likes"
+        headers = {}
+        params = {
+            "page": page,
+            "per_page": per_page
+        }
+        if bearer_token:
+            headers["Authorization"] = f"Bearer {bearer_token}"
+        r = requests.get(url, headers=headers, params=params)
+        users = r.json()
+        for user in users:
+            result.append(user['created_at'])
 
     # 日付単位で集計
     dates = pd.to_datetime(result)

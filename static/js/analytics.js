@@ -39,6 +39,12 @@ function createDateList(start, end) {
 
 
 function render_chart(keys, values){
+
+
+    let theDayBefore = moment(keys[0]).clone().subtract(1, "days").format('YYYY-MM-DD');
+    keys.unshift(theDayBefore);
+    values.unshift(0);
+
     // データ
     const data = {
         // labels: keys.map((value) => moment(value).toDate()),

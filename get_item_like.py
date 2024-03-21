@@ -7,7 +7,6 @@ def get_item_like(item_id: str) -> str:
     """
     Qiita記事がいいねされた日付を集計する
     Args:
-        bearer_token (str): Qiitaアクセストークン
         item_id (str): 記事のID
     Returns:
         str: 指定されたQiitaの記事一覧
@@ -51,4 +50,3 @@ def get_item_like(item_id: str) -> str:
     result_dict = {str(key): value for key, value in result_dict.items()}
 
     return json.dumps(result_dict)
-

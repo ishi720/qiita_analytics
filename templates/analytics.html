@@ -5,8 +5,10 @@
 
 <button onclick="window.history.back();">戻る</button>
 
-<canvas id="myLineChart"></canvas>
-
+<div id="chartContainer" style="height: auto;">
+    <div class="loading">ローディング中</div>
+    <canvas id="myLineChart"></canvas>
+</div>
 <script src="/static/js/analytics.js"></script>
 {% endblock %}
 

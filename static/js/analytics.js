@@ -1,5 +1,13 @@
+var chartContainer;
+var myLineChart;
+
 document.addEventListener('DOMContentLoaded', function() {
+
+    chartContainer = document.getElementById("chartContainer");
+
+
     get_like_date();
+
 });
 
 function get_like_date() {
@@ -95,13 +103,23 @@ function render_chart(keys, values){
         }
     };
 
+    // ローディングを非表示
+    const loadingDiv = document.querySelector("div.loading");
+    if (loadingDiv) {
+        loadingDiv.style.display = "none";
+    }
+
     // グラフを描画
     const ctx = document.getElementById('myLineChart');
-    const myLineChart = new Chart(ctx, {
+    myLineChart = new Chart(ctx, {
         type: 'line',
         data: data,
         options: options
     });
+    resizeChart();
+
+    // ウィンドウのリサイズ時にチャートのサイズを調整する
+    window.addEventListener('resize', resizeChart);
 }
 
 
@@ -117,4 +135,8 @@ function transformArray(arr) {
     }
 
     return transformedArray;
+}
+
+function resizeChart() {
+    myLineChart.resize(chartContainer.clientWidth, "auto");
 }

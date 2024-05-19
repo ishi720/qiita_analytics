@@ -1,11 +1,17 @@
 {% extends "layout.html" %}
 
 {% block content %}
+
 <h1>Qiita記事一覧</h1>
 <form method="get" action="/">
-    <input type="text" id="search" name="search" value="{{ user_name }}">
-    <button type="submit">検索</button>
+    <div class="input-group" style="width: 300px;">
+        <input type="text" id="search" name="search" class="form-control" placeholder="ユーザIDを入力" value="{{ user_name }}">
+        <button class="btn btn-outline-secondary btn-sm" role="button" type="submit" style="width: 50px;">
+            <i class="bi bi-search"></i>
+        </button>
+    </div>
 </form>
+
 
 <table>
     {% if items %}

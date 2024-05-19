@@ -1,0 +1,24 @@
+{
+  "name": "qiita_analytics",
+  "version": "1.0.0",
+  "description": "Qiita ApiとFlaskを使用したサンプルアプリです。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^7.1.1",
+    "mini-css-extract-plugin": "^2.9.0",
+    "sass": "^1.77.2",
+    "sass-loader": "^14.2.1",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3"
+  }
+}

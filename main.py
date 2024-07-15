@@ -17,7 +17,7 @@ def index():
 
 @app.route('/analytics', methods=['GET'])
 def analytics():
-    return render_template('analytics.html', page_title='アナリティクス',)
+    return render_template('analytics.html', page_title='アナリティクス')
 
 
 @app.route('/api/get_item_like', methods=['GET'])

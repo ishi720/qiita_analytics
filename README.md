@@ -2,11 +2,11 @@
 
 Qiita ApiとFlaskを使用したサンプルアプリです。
 
-# Badge
+# Badges
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/93412a453c26496d96252ad048213f47)](https://app.codacy.com/gh/ishi720/qiita_api_sample/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-# Setting
+# Settings
 
 - モジュールのインストール
 

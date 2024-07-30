@@ -1,6 +1,20 @@
 import requests
 import json
 import configparser
+from datetime import datetime
+
+def format_datetime(dt_str: str) -> str:
+    # 与えられた更新日時の文字列
+    original_date_str = dt_str
+
+    # datetimeオブジェクトに変換する
+    original_date = datetime.fromisoformat(original_date_str)
+
+    # 新しいフォーマットで日付を文字列に変換する
+    new_date_str = original_date.strftime("%Y-%m-%d %H:%M:%S")
+
+    return new_date_str  # 出力例: 2024-06-24 01:11:52
+
 
 def get_qiita_myitem(user_name: str) -> str:
     """
@@ -35,6 +49,7 @@ def get_qiita_myitem(user_name: str) -> str:
 
     for item in items:
         if item['private'] == False:
+            print(item)
             page_data = {
                 'title': item['title'],
                 'id': item['id'],
@@ -42,8 +57,9 @@ def get_qiita_myitem(user_name: str) -> str:
                 'likes_count': item['likes_count'],
                 'stocks_count': item['stocks_count'],
                 'page_views_count': item['page_views_count'],
-                'updated_at': item['updated_at']
+                'updated_at': format_datetime(item['updated_at'])
             }
             result.append(page_data)
 
     return json.dumps(result, indent=2, ensure_ascii=False)
+

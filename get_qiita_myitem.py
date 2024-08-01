@@ -49,7 +49,6 @@ def get_qiita_myitem(user_name: str) -> str:
 
     for item in items:
         if item['private'] == False:
-            print(item)
             page_data = {
                 'title': item['title'],
                 'id': item['id'],

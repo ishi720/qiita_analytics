@@ -19,8 +19,9 @@ function get_like_date() {
     fetch(url)
     .then(response => response.json())
     .then(data => {
-        let keys = Object.keys(data);
-        let values = Object.values(data);
+        document.getElementById("item_title").innerHTML = data.title;
+        let keys = Object.keys(data.likes);
+        let values = Object.values(data.likes);
         render_chart(keys, values);
     })
     .catch(error => {

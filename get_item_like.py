@@ -26,6 +26,7 @@ def get_item_like(item_id: str) -> str:
     r = requests.get(url, headers=headers, params=params)
     item_data = r.json()
     page_count = (int(item_data['likes_count']) + per_page - 1) // per_page
+    item_title = item_data['title']
 
     # いいね数をカウント
     for page in range(1, page_count + 1):
@@ -48,5 +49,9 @@ def get_item_like(item_id: str) -> str:
     dates = dates.to_period("D").index
     result_dict = dates.value_counts().sort_index().to_dict()
     result_dict = {str(key): value for key, value in result_dict.items()}
+    return_data = {
+        "title": item_title,
+        "likes": result_dict
+    }
 
-    return json.dumps(result_dict)
+    return json.dumps(return_data)

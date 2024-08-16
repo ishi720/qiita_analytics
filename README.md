@@ -8,18 +8,4 @@ Qiita ApiとFlaskを使用したサンプルアプリです。
 
 # Settings
 
-- モジュールのインストール
-
-```bash
-pip install -r requirements.txt
-```
-
-- APIキーの設定
-  - config.cfg.sampleをコピーしconfig.cfgを作成
-  - Qiitaアクセストークンを取得し、config.cfgの`BEARER_TOKEN`にセット
-
-- アプリの起動
-
-```bash
-python main.py
-```
+- [構築手順](https://github.com/ishi720/qiita_analytics_document/blob/main/%E9%96%8B%E7%99%BA%E6%A7%8B%E7%AF%89%E4%BD%9C%E6%88%90%E6%89%8B%E9%A0%86.md)

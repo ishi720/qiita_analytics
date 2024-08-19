@@ -27,6 +27,9 @@ def get_item_like(item_id: str) -> str:
     item_data = r.json()
     page_count = (int(item_data['likes_count']) + per_page - 1) // per_page
     item_title = item_data['title']
+    item_url = item_data['url']
+    item_user_profile_image_url = item_data['user']['profile_image_url']
+    item_user_id = item_data['user']['id']
 
     # いいね数をカウント
     for page in range(1, page_count + 1):
@@ -51,7 +54,10 @@ def get_item_like(item_id: str) -> str:
     result_dict = {str(key): value for key, value in result_dict.items()}
     return_data = {
         "title": item_title,
-        "likes": result_dict
+        "likes": result_dict,
+        "url": item_url,
+        "user_profile_image_url": item_user_profile_image_url,
+        "user_id" : item_user_id
     }
 
     return json.dumps(return_data)

@@ -20,6 +20,9 @@ function get_like_date() {
     .then(response => response.json())
     .then(data => {
         document.getElementById("item_title").innerHTML = data.title;
+        document.getElementById("item_url").href = data.url;
+        document.getElementById("item_user_id").innerHTML = data.user_id;
+        document.getElementById('item_user_profile_image_url').src = data.user_profile_image_url;
         let keys = Object.keys(data.likes);
         let values = Object.values(data.likes);
         render_chart(keys, values);

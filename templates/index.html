@@ -28,7 +28,7 @@
         {% for item in items %}
             <tr>
                 <td>
-                    <a href="{{ item.url }}">{{ item.title }}</a>
+                    <a target="_blank" href="{{ item.url }}">{{ item.title }}</a>
                 </td>
                 <td>
                     <a href="./analytics?item_id={{ item.id }}">{{ item.likes_count }}</a>

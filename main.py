@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, send_from_directory
 from get_qiita_myitem import get_qiita_myitem
 from get_item_like import get_item_like
 import json
@@ -14,6 +14,10 @@ def index():
     qiita_data = json.loads(qiita_data_str)
 
     return render_template('index.html', page_title='記事一覧', items=qiita_data, user_name=user_name)
+
+@app.route('/robots.txt')
+def robots():
+    return send_from_directory(app.static_folder, 'robots.txt', mimetype='text/plain')
 
 @app.route('/analytics', methods=['GET'])
 def analytics():

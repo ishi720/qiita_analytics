@@ -5,6 +5,10 @@ import json
 
 app = Flask(__name__)
 
+@app.errorhandler(404)
+def error_404(error):
+    return render_template('404.html'), 404
+
 @app.route('/', methods=['GET'])
 def index():
 

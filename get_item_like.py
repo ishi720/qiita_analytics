@@ -29,7 +29,11 @@ def get_item_like(item_id: str) -> str:
     item_title = item_data['title']
     item_url = item_data['url']
     item_user_profile_image_url = item_data['user']['profile_image_url']
+    item_created_at = item_data['created_at']
     item_user_id = item_data['user']['id']
+    item_likes_count = item_data['likes_count']
+    item_comments_count = item_data['comments_count']
+    item_stocks_count = item_data['stocks_count']
 
     # いいね数をカウント
     for page in range(1, page_count + 1):
@@ -57,7 +61,11 @@ def get_item_like(item_id: str) -> str:
         "likes": result_dict,
         "url": item_url,
         "user_profile_image_url": item_user_profile_image_url,
-        "user_id" : item_user_id
+        "user_id" : item_user_id,
+        "created_at": item_created_at,
+        "likes_count": item_likes_count,
+        "comments_count": item_comments_count,
+        "stocks_count": item_stocks_count
     }
 
     return json.dumps(return_data)

@@ -1,20 +1,23 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h1>アナリティクス</h1>
 
-<button onclick="window.history.back();">戻る</button>
-<a target="_blank" href="" id="item_url">
-    <div id="item_title"></div>
-</a>
-<img id="item_user_profile_image_url" src=""/>
-<div id="item_user_id"></div>
+<div id="detail_view">
+    <h1>アナリティクス</h1>
+
+    <button onclick="window.history.back();">戻る</button>
+    <a target="_blank" href="" id="item_url">
+        <div id="item_title"></div>
+    </a>
+    <img id="item_user_profile_image_url" src=""/>
+    <div id="item_user_id"></div>
 
 
-<div id="chartContainer" style="height: auto;">
-    <div class="loading">ローディング中</div>
-    <canvas id="myLineChart"></canvas>
+    <div id="chartContainer">
+        <div class="loading">ローディング中</div>
+        <canvas id="myLineChart"></canvas>
+    </div>
 </div>
+
 <script src="/static/js/analytics.js"></script>
 {% endblock %}
-

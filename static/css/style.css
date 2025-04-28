@@ -2,31 +2,42 @@ body {
     font-family: Arial, sans-serif;
     margin: 20px;
 }
-h1 {
-    text-align: center;
-}
-form {
-    text-align: center;
-    margin-bottom: 20px;
-}
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-th {
-    background-color: #f2f2f2;
-}
 
-.no_item {
-    text-align: center;
-    background-color: #eee;
-    padding: 20px 10px;
-    color: #555;
-    border-radius: 2px;
+
+#list_view {
+    h1 {
+        text-align: center;
+    }
+    form {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .likes_count,
+    .stocks_count,
+    .page_views_count {
+        text-align: right;
+    }
+
+
+    .no_item {
+        text-align: center;
+        background-color: #eee;
+        padding: 20px 10px;
+        color: #555;
+        border-radius: 2px;
+    }
 }

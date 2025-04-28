@@ -2,47 +2,49 @@
 
 {% block content %}
 
-<h1>Qiita記事一覧</h1>
-<form method="get" action="/">
-    <div class="input-group" style="width: 300px;">
-        <input type="text" id="search" name="search" class="form-control" placeholder="ユーザIDを入力" value="{{ user_name }}">
-        <button class="btn btn-outline-secondary btn-sm" role="button" type="submit" style="width: 50px;">
-            <i class="bi bi-search"></i>
-        </button>
-    </div>
-</form>
+<div id="list_view">
+    <h1>Qiita記事一覧</h1>
+    <form method="get" action="/">
+        <div class="input-group" style="width: 300px;">
+            <input type="text" id="search" name="search" class="form-control" placeholder="ユーザIDを入力" value="{{ user_name }}">
+            <button class="btn btn-outline-secondary btn-sm" role="button" type="submit" style="width: 50px;">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+    </form>
 
-<table>
-    {% if items %}
-    <thead>
-        <tr>
-            <th>記事名</th>
-            <th>いいね数</th>
-            <th>ストック数</th>
-            <th>ページビュー数</th>
-            <th>更新日時</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in items %}
+    <table>
+        {% if items %}
+        <thead>
             <tr>
-                <td>
-                    <a href="./analytics?item_id={{ item.id }}">{{ item.title }}</a>
-                </td>
-                <td>
-                    {{ item.likes_count }}
-                </td>
-                <td>{{ item.stocks_count }}</td>
-                <td>{{ item.page_views_count }}</td>
-                <td>{{ item.updated_at }}</td>
+                <th>記事名</th>
+                <th>いいね数</th>
+                <th>ストック数</th>
+                <th>PV数</th>
+                <th>更新日時</th>
             </tr>
-        {% endfor %}
-    </tbody>
-    {% else %}
-    <p class="no_item">
-        指定した条件に当てはまる記事はありませんでした。<br>
-        検索条件を変えて検索してください。
-    </p>
-    {% endif %}
-</table>
-{% endblock %}
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td class="title">
+                        <a href="./analytics?item_id={{ item.id }}">{{ item.title }}</a>
+                    </td>
+                    <td class="likes_count">
+                        {{ item.likes_count }}
+                    </td>
+                    <td class="stocks_count">{{ item.stocks_count }}</td>
+                    <td class="page_views_count">{{ item.page_views_count }}</td>
+                    <td class="updated_at">{{ item.updated_at }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        {% else %}
+        <p class="no_item">
+            指定した条件に当てはまる記事はありませんでした。<br>
+            検索条件を変えて検索してください。
+        </p>
+        {% endif %}
+    </table>
+    {% endblock %}
+</div>
